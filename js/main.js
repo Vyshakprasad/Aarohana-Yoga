@@ -62,4 +62,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ── WhatsApp tooltip — show for 5s once per session
+  const waTooltip = document.getElementById('waTooltip');
+  if (waTooltip && !sessionStorage.getItem('waTooltipShown')) {
+    // Small delay before appearing so page has loaded
+    setTimeout(() => {
+      waTooltip.classList.add('visible');
+      setTimeout(() => {
+        waTooltip.classList.remove('visible');
+        sessionStorage.setItem('waTooltipShown', '1');
+      }, 5000);
+    }, 1500);
+  }
+
 });
