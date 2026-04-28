@@ -398,3 +398,21 @@ footer {
   .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
 }
+
+/* ── FOOTER SOCIAL ── */
+.footer-social {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+.footer-social-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.footer-social-btn:hover { background: var(--gold); border-color: var(--gold); color: white; transform: translateY(-2px); }
