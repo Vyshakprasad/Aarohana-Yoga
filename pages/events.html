@@ -343,145 +343,169 @@
 
 <script src="../js/main.js"></script>
 <script>
-  // ── Load and render events from events.json
-  async function loadEvents() {
-    const grid = document.getElementById('eventsGrid');
-    try {
-      const res  = await fetch('../events.json');
-      const data = await res.json();
-      renderEvents(data, 'all');
-
-      // Filter buttons
-      document.querySelectorAll('.events-filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.events-filter-btn').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          renderEvents(data, btn.dataset.filter);
-        });
-      });
-    } catch(e) {
-      grid.innerHTML = '<div class="events-empty"><div class="big">🗓</div><p>Could not load events. Please try again later.</p></div>';
-    }
+  // ── EVENTS DATA
+  // To add or edit events, update this array and redeploy
+  var EVENTS = [
+  {
+    "id": "inner-child-healing-workshop",
+    "title": "Inner Child Healing Workshop",
+    "status": "past",
+    "date": "2025-12-06",
+    "time": "4:15 PM \u2013 6:00 PM",
+    "location": "Aarohana Yoga Studio, 135B, 2nd Floor, Jawaharlal Nehru Rd, BEML Layout, RR Nagar, Bengaluru",
+    "tagline": "Heal the child within. Transform the life ahead.",
+    "description": "A deeply transformative workshop designed to help you reconnect with your inner child \u2014 the part of you that holds unresolved emotions, old wounds, and forgotten joy. Through guided meditation, breathwork, and energy healing, this session creates a safe space to acknowledge, nurture, and heal those deeper layers of yourself.",
+    "category": "Workshop",
+    "image": "",
+    "price": "",
+    "seats": "",
+    "register_url": "http://wa.me/919036915656"
   }
+];
 
-  function renderEvents(data, filter) {
-    const grid = document.getElementById('eventsGrid');
-    const today = new Date(); today.setHours(0,0,0,0);
+  // ── INIT
+  document.addEventListener('DOMContentLoaded', function() {
+    render('all');
+    document.querySelectorAll('.events-filter-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.events-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        render(btn.dataset.filter);
+      });
+    });
+  });
 
-    const filtered = data.filter(ev => {
-      const evDate = new Date(ev.date);
-      const isUpcoming = evDate >= today;
-      if (filter === 'upcoming') return isUpcoming;
-      if (filter === 'past')     return !isUpcoming;
+  // ── RENDER
+  function render(filter) {
+    var grid = document.getElementById('eventsGrid');
+    var today = new Date(); today.setHours(0,0,0,0);
+
+    var filtered = EVENTS.filter(function(ev) {
+      var d = new Date(ev.date);
+      if (filter === 'upcoming') return d >= today;
+      if (filter === 'past')     return d < today;
       return true;
     });
 
     if (!filtered.length) {
-      const msg = filter === 'upcoming'
+      var msg = filter === 'upcoming'
         ? 'No upcoming events right now. Stay tuned — new workshops are announced regularly!'
-        : 'No past events to show.';
-      grid.innerHTML = `<div class="events-empty"><div class="big">🗓</div><p>${msg}</p><p style="margin-top:1rem"><a href="http://wa.me/919036915656" class="btn-primary" style="display:inline-block;margin-top:0.5rem">Get Notified on WhatsApp</a></p></div>`;
+        : 'No past events to show yet.';
+      grid.innerHTML = '<div class="events-empty"><div class="big">🗓</div><p>' + msg + '</p></div>';
       return;
     }
 
-    grid.innerHTML = filtered.map(ev => buildCard(ev, today)).join('');
+    grid.innerHTML = filtered.map(function(ev) { return buildCard(ev, today); }).join('');
 
-    // Start countdowns for upcoming events
-    filtered.forEach(ev => {
-      const evDate = new Date(ev.date);
-      if (evDate >= today) startCountdown(ev.id, ev.date);
+    // Scroll reveal re-init
+    document.querySelectorAll('.event-card.reveal').forEach(function(el) {
+      el.classList.add('visible');
+    });
+
+    // Countdowns
+    filtered.forEach(function(ev) {
+      if (new Date(ev.date) >= today) startCountdown(ev.id, ev.date);
     });
   }
 
+  // ── BUILD CARD
   function buildCard(ev, today) {
-    const evDate  = new Date(ev.date);
-    const isPast  = evDate < today;
-    const dateStr = evDate.toLocaleDateString('en-IN', { day:'numeric', month:'long', year:'numeric' });
+    var evDate  = new Date(ev.date);
+    var isPast  = evDate < today;
+    var months  = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var dateStr = evDate.getDate() + ' ' + months[evDate.getMonth()] + ' ' + evDate.getFullYear();
 
-    const imgHtml = ev.image
-      ? `<img class="event-card-img" src="${ev.image}" alt="${ev.title}" loading="lazy"/>`
-      : `<div class="event-card-img-placeholder"><span style="font-size:3rem;position:relative;z-index:2">🧘</span></div>`;
+    var imgHtml = ev.image
+      ? '<img class="event-card-img" src="' + ev.image + '" alt="' + ev.title + '" loading="lazy"/>'
+      : '<div class="event-card-img-placeholder"><span style="font-size:3rem;position:relative;z-index:2">🧘</span></div>';
 
-    const statusBadge = isPast
-      ? `<span class="event-badge badge-past">Past Event</span>`
-      : `<span class="event-badge badge-upcoming">Upcoming</span>`;
+    var statusBadge = isPast
+      ? '<span class="event-badge badge-past">Past Event</span>'
+      : '<span class="event-badge badge-upcoming">Upcoming</span>';
 
-    const catBadge = ev.category
-      ? `<span class="event-badge badge-${ev.category.toLowerCase()}">${ev.category}</span>`
+    var catBadge = ev.category
+      ? '<span class="event-badge badge-' + ev.category.toLowerCase() + '">' + ev.category + '</span>'
       : '';
 
-    const countdownHtml = !isPast
-      ? `<div class="event-countdown" id="cd-${ev.id}">
-           <div class="countdown-unit"><span class="countdown-num" id="cd-${ev.id}-d">--</span><span class="countdown-lbl">Days</span></div>
-           <div class="countdown-unit"><span class="countdown-num" id="cd-${ev.id}-h">--</span><span class="countdown-lbl">Hours</span></div>
-           <div class="countdown-unit"><span class="countdown-num" id="cd-${ev.id}-m">--</span><span class="countdown-lbl">Mins</span></div>
-         </div>` : '';
+    var countdownHtml = !isPast
+      ? '<div class="event-countdown" id="cd-' + ev.id + '">'
+        + '<div class="countdown-unit"><span class="countdown-num" id="cd-' + ev.id + '-d">--</span><span class="countdown-lbl">Days</span></div>'
+        + '<div class="countdown-unit"><span class="countdown-num" id="cd-' + ev.id + '-h">--</span><span class="countdown-lbl">Hours</span></div>'
+        + '<div class="countdown-unit"><span class="countdown-num" id="cd-' + ev.id + '-m">--</span><span class="countdown-lbl">Mins</span></div>'
+        + '</div>'
+      : '';
 
-    const priceHtml = ev.price
-      ? `<span class="event-price">₹${ev.price}</span>`
-      : `<span class="event-price free">Free / Enquire</span>`;
+    var priceHtml = ev.price
+      ? '<span class="event-price">&#8377;' + ev.price + '</span>'
+      : '<span class="event-price free">Free / Enquire</span>';
 
-    const ctaHtml = isPast
-      ? `<span class="event-cta event-cta-past">Event Completed</span>`
-      : `<a href="${ev.register_url || 'http://wa.me/919036915656'}" target="_blank" class="event-cta event-cta-primary">Register Now</a>`;
+    var ctaHtml = isPast
+      ? '<span class="event-cta event-cta-past">Event Completed</span>'
+      : '<a href="' + (ev.register_url || 'http://wa.me/919036915656') + '" target="_blank" class="event-cta event-cta-primary">Register Now</a>';
 
-    return `
-    <div class="event-card ${isPast ? 'past' : 'upcoming'} reveal">
-      ${imgHtml}
-      <div class="event-card-body">
-        <div class="event-meta">
-          ${statusBadge}
-          ${catBadge}
-        </div>
-        <h3 class="event-title">${ev.title}</h3>
-        ${ev.tagline ? `<p class="event-tagline">${ev.tagline}</p>` : ''}
-        ${countdownHtml}
-        <div class="event-details">
-          <div class="event-detail"><span class="event-detail-icon">📅</span><span>${dateStr}${ev.time ? ' &nbsp;·&nbsp; ' + ev.time : ''}</span></div>
-          ${ev.location ? `<div class="event-detail"><span class="event-detail-icon">📍</span><span>${ev.location}</span></div>` : ''}
-          ${ev.seats ? `<div class="event-detail"><span class="event-detail-icon">🪑</span><span>${ev.seats} seats available</span></div>` : ''}
-        </div>
-        ${ev.description ? `<p class="event-desc">${ev.description}</p>` : ''}
-        <div class="event-footer">
-          ${priceHtml}
-          ${ctaHtml}
-        </div>
-      </div>
-    </div>`;
+    var timeStr = ev.time ? ' &nbsp;&middot;&nbsp; ' + ev.time : '';
+    var locationRow = ev.location
+      ? '<div class="event-detail"><span class="event-detail-icon">📍</span><span>' + ev.location + '</span></div>'
+      : '';
+    var seatsRow = ev.seats
+      ? '<div class="event-detail"><span class="event-detail-icon">🪑</span><span>' + ev.seats + ' seats available</span></div>'
+      : '';
+    var taglineHtml = ev.tagline
+      ? '<p class="event-tagline">' + ev.tagline + '</p>'
+      : '';
+    var descHtml = ev.description
+      ? '<p class="event-desc">' + ev.description + '</p>'
+      : '';
+
+    return '<div class="event-card ' + (isPast ? 'past' : 'upcoming') + ' reveal visible">'
+      + imgHtml
+      + '<div class="event-card-body">'
+      + '<div class="event-meta">' + statusBadge + catBadge + '</div>'
+      + '<h3 class="event-title">' + ev.title + '</h3>'
+      + taglineHtml
+      + countdownHtml
+      + '<div class="event-details">'
+      + '<div class="event-detail"><span class="event-detail-icon">📅</span><span>' + dateStr + timeStr + '</span></div>'
+      + locationRow
+      + seatsRow
+      + '</div>'
+      + descHtml
+      + '<div class="event-footer">' + priceHtml + ctaHtml + '</div>'
+      + '</div>'
+      + '</div>';
   }
 
+  // ── COUNTDOWN
   function startCountdown(id, dateStr) {
     function tick() {
-      const target = new Date(dateStr);
-      const now    = new Date();
-      const diff   = target - now;
+      var diff = new Date(dateStr) - new Date();
       if (diff <= 0) return;
-      const d = Math.floor(diff / 86400000);
-      const h = Math.floor((diff % 86400000) / 3600000);
-      const m = Math.floor((diff % 3600000) / 60000);
-      const dEl = document.getElementById(`cd-${id}-d`);
-      const hEl = document.getElementById(`cd-${id}-h`);
-      const mEl = document.getElementById(`cd-${id}-m`);
-      if (dEl) dEl.textContent = String(d).padStart(2,'0');
-      if (hEl) hEl.textContent = String(h).padStart(2,'0');
-      if (mEl) mEl.textContent = String(m).padStart(2,'0');
+      var d = Math.floor(diff / 86400000);
+      var h = Math.floor((diff % 86400000) / 3600000);
+      var m = Math.floor((diff % 3600000) / 60000);
+      function pad(n) { return String(n).padStart(2,'0'); }
+      var dEl = document.getElementById('cd-' + id + '-d');
+      var hEl = document.getElementById('cd-' + id + '-h');
+      var mEl = document.getElementById('cd-' + id + '-m');
+      if (dEl) dEl.textContent = pad(d);
+      if (hEl) hEl.textContent = pad(h);
+      if (mEl) mEl.textContent = pad(m);
     }
     tick();
     setInterval(tick, 60000);
   }
 
+  // ── NOTIFY
   function handleNotify() {
-    const input = document.getElementById('notifyInput');
-    const btn   = document.querySelector('.notify-submit');
+    var input = document.getElementById('notifyInput');
+    var btn   = document.querySelector('.notify-submit');
     if (!input.value.trim()) { input.focus(); return; }
-    const msg = encodeURIComponent(`Hi! I'd like to be notified about upcoming Aarohana Yoga events. My number: ${input.value}`);
-    window.open(`http://wa.me/919036915656?text=${msg}`, '_blank');
+    var msg = encodeURIComponent('Hi! I would like to be notified about upcoming Aarohana Yoga events. My number: ' + input.value);
+    window.open('http://wa.me/919036915656?text=' + msg, '_blank');
     btn.textContent = 'Request Sent ✓';
     btn.style.background = 'rgba(255,255,255,0.3)';
     input.value = '';
   }
-
-  loadEvents();
 </script>
 </body>
 </html>
