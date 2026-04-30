@@ -1,101 +1,210 @@
-# Aarohana Yoga — Website
+# Aarohana Yoga Website
 
-A clean, production-ready static website for **Aarohana Yoga**, founded by Dr. Meenakshi K S.  
-Built with pure HTML, CSS, and JavaScript. No frameworks, no dependencies, no build step.
+Custom static website for Aarohana Yoga, a yoga and healing studio in RR Nagar, Bengaluru founded by Dr. Meenakshi K S.
 
----
+The site is built with plain HTML, CSS, and JavaScript. There is no framework, package manager, or build step.
 
-## 📁 Project Structure
+Live site: `https://vyshakprasad.github.io/Aarohana-Yoga/`
 
-```
+## Project Structure
+
+```text
 aarohana-yoga/
-├── index.html          ← Home page
+├── index.html
+├── events.json
 ├── css/
-│   └── main.css        ← Shared styles, brand tokens, nav, footer
+│   └── main.css
 ├── js/
-│   └── main.js         ← Shared JS: scroll effects, nav, reveal animations
+│   └── main.js
 ├── images/
-│   └── (place images here — hero, gallery, team photos etc.)
-├── pages/
-│   └── about.html      ← About / Founder page
-└── README.md
+│   ├── logo.png
+│   ├── logo-footer.png
+│   ├── logo-icon.png
+│   ├── favicon.ico
+│   ├── apple-touch-icon.png
+│   ├── hero-lifestyle.png
+│   ├── meenakshi.jpeg
+│   ├── meenakshi-about.jpeg
+│   ├── shashi.jpeg
+│   ├── veeresh.jpg
+│   ├── events/
+│   │   ├── inner-child-healing.png
+│   │   ├── kids-summer-camp.png
+│   │   └── meditation-for-healing.png
+│   └── gallery/
+│       └── gallery-01.jpeg through gallery-56.jpeg
+└── pages/
+    ├── about.html
+    ├── gallery.html
+    └── events.html
 ```
 
----
+## Brand
 
-## 🎨 Brand Colours
+Studio: Aarohana Yoga  
+Tagline: Flow, Heal, Evolve  
+Founder: Dr. Meenakshi K S  
+Address: 135B, 2nd Floor, Opp HDFC Bank, Jawaharlal Nehru Rd, BEML Layout, 4th Stage, Rajarajeshwari Nagar, Bengaluru - 560098  
+Phone: +91 9036915656 / +91 80 35947279  
+Email: aarohanayoga@gmail.com  
+WhatsApp: `http://wa.me/919036915656`  
+Instagram: `https://www.instagram.com/aarohanayoga`  
+Facebook: `https://www.facebook.com/share/173X7oMKS6/`
 
-Derived from the Aarohana Yoga logo:
+Primary colors are defined in `css/main.css`:
 
-| Token | Value | Use |
-|---|---|---|
-| `--teal` | `#2E6B5E` | Primary brand (nav CTA, headings, buttons) |
-| `--teal-mid` | `#4A8577` | Hover states, avatar backgrounds |
-| `--gold` | `#B8935A` | Accent (section tags, underlines, badges) |
-| `--gold-light` | `#D4AC72` | Footer text, hover highlights |
-| `--cream` | `#F7F3EC` | Section backgrounds |
-| `--warm-white` | `#FDFAF5` | Page background |
-| `--charcoal` | `#2C2C2C` | Body text |
+```css
+--gold: #B8935A;
+--gold-light: #D4AC72;
+--gold-pale: #EDD9B4;
+--teal: #2E6B5E;
+--teal-mid: #4A8577;
+--teal-light: #7AAF9F;
+--cream: #F7F3EC;
+--warm-white: #FDFAF5;
+--charcoal: #2C2C2C;
+--mid-grey: #6B6B6B;
+--light-grey: #E8E3DC;
+```
 
----
+Typography:
 
-## 🚀 Deploying
+- Headings: Cormorant Garamond
+- Body, labels, buttons: Jost
 
-### Option 1 — Netlify (Recommended, free)
-1. Go to [netlify.com](https://netlify.com) → "Add new site" → "Deploy manually"
-2. Drag and drop the `aarohana-yoga/` folder
-3. Done — live in ~30 seconds
+## Current Pages
 
-### Option 2 — GitHub Pages (Free)
-1. Push this folder to a GitHub repo
-2. Go to Settings → Pages → Source: main branch → `/root`
-3. Site is live at `https://yourusername.github.io/aarohana-yoga`
+`index.html`
 
-### Option 3 — Vercel (Free)
-1. Go to [vercel.com](https://vercel.com) → Import project → upload folder
+- Home page with hero, founder intro, lifestyle banner, services, reasons to choose Aarohana, testimonials, sample schedule, contact details, Google Maps embed, and contact form.
+- Contact form is still frontend-only and needs a Formspree endpoint or another form backend.
+- Testimonials include one real testimonial and two placeholders that should be replaced.
+- Schedule table is sample data and should be confirmed before relying on it publicly.
 
----
+`pages/about.html`
 
-## ✉️ Making the Contact Form Work
+- About/founder page with stats, Dr. Meenakshi's story, awards, credentials, philosophy, mission and vision, trainers, and CTA.
+- Trainer images are local assets.
 
-The form currently has a success animation but doesn't send emails.  
-To make it functional, use **Formspree** (free, no backend needed):
+`pages/gallery.html`
 
-1. Sign up at [formspree.io](https://formspree.io)
-2. Create a new form — you'll get a form endpoint URL like `https://formspree.io/f/xxxx`
-3. In `index.html`, update the form submit button's click handler in `js/main.js` to POST to that URL
+- Gallery page with 56 local images.
+- Filters: All Photos, Yoga Poses, Group Classes, Studio Life.
+- Lightbox supports click, keyboard navigation, image counter, and ESC close.
+- Gallery categories are currently assigned by filename ranges and may need manual review.
 
----
+`pages/events.html`
 
-## 🖼️ Adding Real Photos
+- Events page with filter tabs for All, Upcoming, and Past.
+- Event cards are rendered from an inline JavaScript array so the page works when opened locally through `file:///`.
+- `events.json` mirrors the same event content for easier reference and future migration.
+- Poster-style event images are stored in `images/events/` and displayed with `object-fit: contain` so flyers are visible without cropping.
 
-Replace placeholder visuals by:
-1. Saving images to the `images/` folder
-2. Updating the `src` attributes in the relevant HTML files
+## Current Events
 
-Key image slots:
-- `index.html` hero: the `<img class="hero-photo">` tag (currently uses Wix CDN URL)
-- `pages/about.html` founder section: replace the `.founder-img-frame` placeholder with an `<img>` tag
-- Trainer photos: already pulling from Wix CDN — download and host locally for reliability
+Upcoming:
 
----
+- Kids Summer Camp
+  - Dates: 4 May - 22 May 2026
+  - Time: 10:30 AM - 12:30 PM
+  - Audience: Kids aged 6 to 14
+  - Price: Rs. 3499
+  - Enroll by: 2 May 2026
+  - Image: `images/events/kids-summer-camp.png`
 
-## 📄 Pages Built
+- Meditation for Healing
+  - Dates: 6 May - 29 May 2026
+  - Format: 21-day online course
+  - Audience: Beginner friendly; no prior experience needed
+  - Image: `images/events/meditation-for-healing.png`
 
-| File | Description |
-|---|---|
-| `index.html` | Home — Hero, About snippet, Services, Why Us, Testimonials, Schedule, Contact |
-| `pages/about.html` | Full About — Founder story, Philosophy, Mission/Vision, Trainers |
+Past:
 
-## 📄 Pages To Add Next
+- Inner Child Healing Workshop
+  - Date: 6 December 2025
+  - Time: 4:30 PM - 6:00 PM
+  - Facilitator: Dr. Meenakshi K S
+  - Image: `images/events/inner-child-healing.png`
 
-| Page | Notes |
-|---|---|
-| `pages/services.html` | Expanded service detail pages |
-| `pages/gallery.html` | Filterable image gallery |
-| `pages/events.html` | Upcoming events with countdowns |
-| `pages/blog/` | Blog/Wellness Journal |
+## Editing Events
 
----
+Update event data in both places:
 
-*Built with ❤️ for Aarohana Yoga, Bengaluru.*
+1. `pages/events.html` inside the `EVENTS` array
+2. `events.json`
+
+The events page uses the inline data. The JSON file is a mirror for documentation, future fetch-based use, or external editing.
+
+Example event shape:
+
+```json
+{
+  "id": "unique-event-slug",
+  "title": "Event Title",
+  "status": "upcoming",
+  "date": "2026-05-04",
+  "date_label": "4 May - 22 May 2026",
+  "time": "10:30 AM - 12:30 PM",
+  "location": "Aarohana Yoga Studio, RR Nagar, Bengaluru",
+  "tagline": "Short event tagline.",
+  "description": "One clear paragraph describing the event.",
+  "category": "Workshop",
+  "image": "../images/events/example.png",
+  "price": "3499",
+  "seats": "",
+  "audience": "Who this event is for",
+  "enroll_by": "Enroll by 2 May 2026",
+  "register_url": "http://wa.me/919036915656"
+}
+```
+
+Notes:
+
+- `date` controls countdowns and upcoming/past filtering.
+- `date_label` is optional and should be used for multi-day events.
+- Use `../images/events/...` inside `pages/events.html`.
+- Use `images/events/...` inside `events.json`.
+- If `price` is blank, the card shows "Free / Enquire".
+- If `audience`, `enroll_by`, or `seats` are blank, those rows are hidden.
+
+## Shared Components
+
+Navigation:
+
+- Shared across all pages.
+- Desktop navigation includes About, Services, Schedule, Testimonials, Gallery, Events, and Book a Class.
+- Mobile navigation uses a hamburger dropdown.
+- Active page is highlighted.
+
+Footer:
+
+- Shared across all pages.
+- Uses `logo-footer.png`, which is pre-composited for the dark footer background.
+- Do not replace it with `logo.png`; the normal logo can look faint on the footer.
+
+WhatsApp floating button:
+
+- Present on all pages.
+- Tooltip appears on every page reload.
+- Opens WhatsApp to `+91 9036915656`.
+
+## Deployment
+
+This is a static site. To deploy:
+
+1. Commit the changed files.
+2. Push to the GitHub repository.
+3. GitHub Pages should update automatically in about a minute.
+
+No build command is needed.
+
+## Known Pending Work
+
+- Wire the contact form to Formspree or another backend.
+- Replace placeholder testimonials with real student testimonials.
+- Confirm and update the class schedule.
+- Manually review gallery categories.
+- Add expanded Services page.
+- Add FAQ page.
+- Add Blog / Wellness Journal page.
+- Consider adding richer SEO metadata and Open Graph preview images for each page.
