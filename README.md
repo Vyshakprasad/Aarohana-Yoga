@@ -35,6 +35,7 @@ aarohana-yoga/
 │       └── gallery-01.jpeg through gallery-56.jpeg
 └── pages/
     ├── about.html
+    ├── services.html
     ├── gallery.html
     └── events.html
 ```
@@ -78,13 +79,20 @@ Typography:
 
 - Home page with hero, founder intro, lifestyle banner, services, reasons to choose Aarohana, testimonials, sample schedule, contact details, Google Maps embed, and contact form.
 - Contact form is still frontend-only and needs a Formspree endpoint or another form backend.
-- Testimonials include one real testimonial and two placeholders that should be replaced.
+- Testimonials use public student reviews from Aarohana's Wix site and Justdial.
 - Schedule table is sample data and should be confirmed before relying on it publicly.
 
 `pages/about.html`
 
 - About/founder page with stats, Dr. Meenakshi's story, awards, credentials, philosophy, mission and vision, trainers, and CTA.
 - Trainer images are local assets.
+
+`pages/services.html`
+
+- Expanded service detail page for all 11 offerings.
+- The top service menu links to each detailed section on the same page.
+- Homepage service cards link directly to the corresponding section on this page.
+- The main navigation Services item points to this page.
 
 `pages/gallery.html`
 
@@ -99,32 +107,6 @@ Typography:
 - Event cards are rendered from an inline JavaScript array so the page works when opened locally through `file:///`.
 - `events.json` mirrors the same event content for easier reference and future migration.
 - Poster-style event images are stored in `images/events/` and displayed with `object-fit: contain` so flyers are visible without cropping.
-
-## Current Events
-
-Upcoming:
-
-- Kids Summer Camp
-  - Dates: 4 May - 22 May 2026
-  - Time: 10:30 AM - 12:30 PM
-  - Audience: Kids aged 6 to 14
-  - Price: Rs. 3499
-  - Enroll by: 2 May 2026
-  - Image: `images/events/kids-summer-camp.png`
-
-- Meditation for Healing
-  - Dates: 6 May - 29 May 2026
-  - Format: 21-day online course
-  - Audience: Beginner friendly; no prior experience needed
-  - Image: `images/events/meditation-for-healing.png`
-
-Past:
-
-- Inner Child Healing Workshop
-  - Date: 6 December 2025
-  - Time: 4:30 PM - 6:00 PM
-  - Facilitator: Dr. Meenakshi K S
-  - Image: `images/events/inner-child-healing.png`
 
 ## Editing Events
 
@@ -201,10 +183,8 @@ No build command is needed.
 ## Known Pending Work
 
 - Wire the contact form to Formspree or another backend.
-- Replace placeholder testimonials with real student testimonials.
 - Confirm and update the class schedule.
 - Manually review gallery categories.
-- Add expanded Services page.
 - Add FAQ page.
 - Add Blog / Wellness Journal page.
 - Consider adding richer SEO metadata and Open Graph preview images for each page.

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services | Aarohana Yoga</title>
+  <meta name="description" content="Explore Aarohana Yoga's services including yoga for wellness, fertility yoga, sound healing, meditation, therapeutic yoga, Reiki, counseling, life coaching, and group wellness programs."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/main.css"/>
+  <link rel="icon" type="image/x-icon" href="../images/favicon.ico"/>
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+  <style>
+    #services-intro { padding: 5rem 8% 3rem; background: var(--warm-white); }
+    .service-jump-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1px; background: var(--light-grey); margin-top: 2.5rem;
+    }
+    .service-jump {
+      background: white; padding: 1.2rem; text-decoration: none; color: var(--charcoal);
+      display: flex; align-items: center; gap: 0.8rem; transition: background 0.25s, color 0.25s;
+      min-height: 78px;
+    }
+    .service-jump:hover { background: var(--teal); color: white; }
+    .service-jump span:first-child { color: var(--gold); font-family: var(--font-serif); font-size: 1.35rem; }
+    .service-jump:hover span:first-child { color: var(--gold-pale); }
+    .service-jump span:last-child { font-size: 0.86rem; line-height: 1.35; }
+
+    .services-hero-image {
+      height: 340px; position: relative; overflow: hidden; background: var(--teal);
+    }
+    .services-hero-image img { width: 100%; height: 100%; object-fit: cover; }
+    .services-hero-image::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(28,40,32,0.65), rgba(28,40,32,0.12));
+    }
+
+    #service-details { padding: 5rem 8%; background: var(--cream); }
+    .service-detail {
+      scroll-margin-top: 96px;
+      display: grid; grid-template-columns: minmax(170px, 0.36fr) 1fr;
+      gap: 3rem; padding: 3rem 0; border-bottom: 1px solid rgba(184,147,90,0.24);
+    }
+    .service-detail:first-child { padding-top: 0; }
+    .service-detail:last-child { border-bottom: 0; padding-bottom: 0; }
+    .service-kicker {
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.9rem;
+    }
+    .service-icon-large {
+      width: 82px; height: 82px; display: grid; place-items: center;
+      background: var(--teal); color: white; font-size: 2.2rem; margin-bottom: 1.2rem;
+    }
+    .service-detail h2 {
+      font-size: clamp(1.9rem, 3vw, 2.8rem); line-height: 1.1; color: var(--charcoal);
+      margin-bottom: 1rem;
+    }
+    .service-summary {
+      font-size: 1rem; line-height: 1.85; color: var(--mid-grey); max-width: 760px;
+      font-weight: 300; margin-bottom: 1.5rem;
+    }
+    .service-points {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem 1rem;
+      list-style: none; margin-bottom: 1.8rem;
+    }
+    .service-points li {
+      background: rgba(255,255,255,0.62); border-left: 3px solid var(--gold);
+      padding: 0.85rem 1rem; color: var(--charcoal); font-size: 0.88rem; line-height: 1.55;
+    }
+    .service-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    #services-cta { background: var(--teal); color: white; padding: 5rem 8%; text-align: center; }
+    #services-cta .section-tag { color: var(--gold-pale); justify-content: center; }
+    #services-cta .section-tag::before { display: none; }
+    #services-cta h2 { color: white; }
+    #services-cta h2 em { color: var(--gold-pale); }
+    #services-cta p {
+      max-width: 560px; margin: 0 auto 2rem; color: rgba(255,255,255,0.78);
+      line-height: 1.8; font-weight: 300;
+    }
+    #services-cta .btn-outline { color: white; border-color: rgba(255,255,255,0.72); }
+    #services-cta .btn-outline:hover { background: white; color: var(--teal); }
+
+    @media (max-width: 900px) {
+      #services-intro, #service-details, #services-cta { padding: var(--section-pad-sm); }
+      .service-detail { grid-template-columns: 1fr; gap: 1rem; }
+      .service-points { grid-template-columns: 1fr; }
+      .services-hero-image { height: 260px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="../index.html" class="nav-logo">
+    <img src="../images/logo.png" alt="Aarohana Yoga" />
+    <div class="nav-brand-text">
+      <span class="nav-brand-name">Aarohana Yoga</span>
+      <span class="nav-brand-tagline">Flow, Heal, Evolve</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="../index.html#schedule">Schedule</a></li>
+    <li><a href="../index.html#testimonials">Testimonials</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="../index.html#contact" class="nav-cta">Book a Class</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="../index.html#schedule">Schedule</a>
+  <a href="../index.html#testimonials">Testimonials</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="events.html">Events</a>
+  <a href="../index.html#contact">Book a Class</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-tag">Our Services</div>
+    <h1>Holistic care for<br><em>every stage</em></h1>
+    <p class="page-hero-desc">Choose from yoga, healing, meditation, coaching, and group wellness programs guided by Dr. Meenakshi K S and the Aarohana team.</p>
+  </div>
+  <div class="hero-om">ॐ</div>
+</div>
+
+<div class="services-hero-image">
+  <img src="../images/hero-lifestyle.png" alt="Aarohana Yoga studio setting"/>
+</div>
+
+<section id="services-intro">
+  <div class="section-tag reveal">Service Menu</div>
+  <h2 class="section-title reveal">Find the right path<br><em>for your needs</em></h2>
+  <p class="section-lead reveal">Each offering is designed to meet people where they are, whether they are building a regular yoga practice, seeking therapeutic support, exploring meditation, or bringing wellness into a school or workplace.</p>
+  <div class="service-jump-grid reveal">
+    <a class="service-jump" href="#yoga-for-wellness"><span>01</span><span>Yoga for Wellness</span></a>
+    <a class="service-jump" href="#fertility-yoga"><span>02</span><span>Fertility Yoga & Wellness Support</span></a>
+    <a class="service-jump" href="#sound-healing"><span>03</span><span>Sound Healing Therapy</span></a>
+    <a class="service-jump" href="#energy-healing-nlp"><span>04</span><span>Energy Healing & NLP</span></a>
+    <a class="service-jump" href="#meditation-pranayama"><span>05</span><span>Meditation & Pranayama</span></a>
+    <a class="service-jump" href="#therapeutic-yoga"><span>06</span><span>Therapeutic Yoga</span></a>
+    <a class="service-jump" href="#tarot-angel-reading"><span>07</span><span>Tarot & Angel Card Reading</span></a>
+    <a class="service-jump" href="#reiki-pranic-healing"><span>08</span><span>Reiki & Pranic Healing</span></a>
+    <a class="service-jump" href="#counseling-life-coaching"><span>09</span><span>Counseling & Life Coaching</span></a>
+    <a class="service-jump" href="#corporate-school-wellness"><span>10</span><span>Corporate & School Wellness</span></a>
+    <a class="service-jump" href="#personal-coaching"><span>11</span><span>Personal Coaching</span></a>
+  </div>
+</section>
+
+<section id="service-details">
+  <article class="service-detail reveal" id="yoga-for-wellness">
+    <div><div class="service-icon-large">🧘</div><div class="service-kicker">Service 01</div></div>
+    <div>
+      <h2>Yoga for Wellness</h2>
+      <p class="service-summary">Personalized yoga sessions that support strength, flexibility, balance, and everyday vitality. Classes blend traditional yogic practices with mindful movement so students can build a steady practice at a safe, sustainable pace.</p>
+      <ul class="service-points"><li>Suitable for beginners and continuing practitioners.</li><li>Supports mobility, posture, breath awareness, and physical ease.</li><li>Adapted for different age groups and body needs.</li><li>Builds consistency through simple, grounded practice.</li></ul>
+      <div class="service-actions"><a href="../index.html#contact" class="btn-primary">Enquire Now</a></div>
+    </div>
+  </article>
+
+  <article class="service-detail reveal" id="fertility-yoga">
+    <div><div class="service-icon-large">🌸</div><div class="service-kicker">Service 02</div></div>
+    <div>
+      <h2>Fertility Yoga & Wellness Support</h2>
+      <p class="service-summary">Gentle yoga-based fertility support for women and couples seeking emotional steadiness, stress reduction, hormonal balance, and a more compassionate relationship with the body during the fertility journey.</p>
+      <ul class="service-points"><li>Designed around relaxation, breath, pelvic health, and nervous system regulation.</li><li>Warm, private, and supportive guidance.</li><li>Can complement medical fertility care with mindful movement.</li><li>Focuses on hope, patience, and body trust.</li></ul>
+      <div class="service-actions"><a href="../index.html#contact" class="btn-primary">Enquire Now</a></div>
+    </div>
+  </article>
+
+  <article class="service-detail reveal" id="sound-healing">
+    <div><div class="service-icon-large">🎵</div><div class="service-kicker">Service 03</div></div>
+    <div>
+      <h2>Sound Healing Therapy</h2>
+      <p class="service-summary">Restorative sessions using sound vibrations to help the body soften, the mind quieten, and emotional tension release. The practice supports deep rest and inner balance through instruments such as singing bowls and resonant sound work.</p>
+      <ul class="service-points"><li>Helpful for relaxation, emotional release, and stress relief.</li><li>Guided by internationally certified sound therapy expertise.</li><li>Creates a meditative healing environment.</li><li>Available as individual or group healing experiences.</li></ul>
+      <div class="service-actions"><a href="../index.html#contact" class="btn-primary">Enquire Now</a></div>
+    </div>
+  </article>
+
+  <article class="service-detail reveal" id="energy-healing-nlp">
+    <div><div class="service-icon-large">⚡</div><div class="service-kicker">Service 04</div></div>
+    <div>
+      <h2>Energy Healing & NLP</h2>
+      <p class="service-summary">A combined approach that works with energy, awareness, and inner patterns. Sessions are intended to help release blocks, restore the flow of prana, and support clearer emotional and mental alignment.</p>
+      <ul class="service-points"><li>Supports emotional clarity and inner reset.</li><li>Combines yogic energy wisdom with NLP-based awareness work.</li><li>Can be tailored around personal challenges or goals.</li><li>Encourages grounded self-understanding and transformation.</li></ul>
+      <div class="service-actions"><a href="../index.html#contact" class="btn-primary">Enquire Now</a></div>
+    </div>
+  </article>
+
+  <article class="service-detail reveal" id="meditation-pranayama">
+    <div><div class="service-icon-large">🧠</div><div class="service-kicker">Service 05</div></div>
+    <div>
+      <h2>Meditation & Pranayama</h2>
+      <p class="service-summary">Breathwork and guided meditation sessions that calm the mind, improve emotional balance, and open the way toward stillness. Students learn practical tools they can carry into daily life.</p>
+      <ul class="service-points"><li>Includes breath awareness, pranayama, and guided meditation.</li><li>Supports focus, emotional regulation, and stress reduction.</li><li>Beginner-friendly and adaptable.</li><li>Useful for both personal practice and healing journeys.</li></ul>
+      <div class="service-actions"><a href="../index.html#contact" class="btn-primary">Enquire Now</a></div>
+    </div>
+  </article>
+
+  <article class="service-detail reveal" id="therapeutic-yoga">
+    <div><div class="service-icon-large">💆</div><div class="service-kicker">Service 06</div></div>
+    <div>
+      <h2>Therapeutic Yoga</h2>
+      <p class="service-summary">Customized yoga support for chronic pain, mobility concerns, lifestyle disorders, and recovery needs. The emphasis is on safe progress, individual care, and practices that respect the body's limits.</p>
+      <ul class="service-points"><li>Personalized for pain, stiffness, mobility, or recovery concerns.</li><li>Prioritizes safety, alignment, breath, and gradual strengthening.</li><li>Supports lifestyle balance and body awareness.</li><li>Best suited for students who need individual attention.</li></ul>
+      <div class="service-actions"><a href="../index.html#contact" class="btn-primary">Enquire Now</a></div>
+    </div>
+  </article>
+
+  <article class="service-detail reveal" id="tarot-angel-reading">
+    <div><div class="service-icon-large">🔮</div><div class="service-kicker">Service 07</div></div>
+    <div>
+      <h2>Tarot & Angel Card Reading</h2>
+      <p class="service-summary">Reflective guidance sessions for people seeking clarity, reassurance, or a deeper view of their current life questions. The reading is held as a supportive space for insight rather than fear-based prediction.</p>
+      <ul class="service-points"><li>Useful for reflection, direction, and emotional clarity.</li><li>Held with compassion and confidentiality.</li><li>Can support decision-making and self-inquiry.</li><li>Best approached as guidance for awareness and choice.</li></ul>
+      <div class="service-actions"><a href="../index.html#contact" class="btn-primary">Enquire Now</a></div>
+    </div>
+  </article>
+
+  <article class="service-detail reveal" id="reiki-pranic-healing">
+    <div><div class="service-icon-large">✨</div><div class="service-kicker">Service 08</div></div>
+    <div>
+      <h2>Reiki & Pranic Healing</h2>
+      <p class="service-summary">Subtle energy healing sessions designed to harmonize the mind, body, and emotions. These practices support relaxation, balance, and the body's natural movement toward restoration.</p>
+      <ul class="service-points"><li>Gentle, non-invasive energy work.</li><li>Supports relaxation and emotional balance.</li><li>Can be used alongside yoga, meditation, or coaching.</li><li>Guided by Reiki Grand Master and Pranic Healing experience.</li></ul>
+      <div class="service-actions"><a href="../index.html#contact" class="btn-primary">Enquire Now</a></div>
+    </div>
+  </article>
+
+  <article class="service-detail reveal" id="counseling-life-coaching">
+    <div><div class="service-icon-large">💬</div><div class="service-kicker">Service 09</div></div>
+    <div>
+      <h2>Counseling & Life Coaching</h2>
+      <p class="service-summary">Compassionate one-on-one guidance for people navigating stress, transition, emotional heaviness, or the desire to reconnect with purpose. Sessions combine listening, reflection, and practical inner-work tools.</p>
+      <ul class="service-points"><li>Supports self-awareness, confidence, and emotional clarity.</li><li>Helpful during life transitions or personal blocks.</li><li>Integrates mindfulness and holistic wellness guidance.</li><li>Focused on practical, grounded next steps.</li></ul>
+      <div class="service-actions"><a href="../index.html#contact" class="btn-primary">Enquire Now</a></div>
+    </div>
+  </article>
+
+  <article class="service-detail reveal" id="corporate-school-wellness">
+    <div><div class="service-icon-large">🏢</div><div class="service-kicker">Service 10</div></div>
+    <div>
+      <h2>Corporate & School Wellness</h2>
+      <p class="service-summary">Structured group wellness programs for workplaces, schools, and organizations. Sessions can include yoga, breathwork, mindfulness, stress reduction, and guided practices that support healthier teams and classrooms.</p>
+      <ul class="service-points"><li>Programs can be customized for employees, students, or teams.</li><li>Supports focus, productivity, emotional well-being, and stress management.</li><li>Available as workshops, recurring sessions, or wellness days.</li><li>Suitable for both in-studio and on-site formats.</li></ul>
+      <div class="service-actions"><a href="../index.html#contact" class="btn-primary">Enquire Now</a></div>
+    </div>
+  </article>
+
+  <article class="service-detail reveal" id="personal-coaching">
+    <div><div class="service-icon-large">🌿</div><div class="service-kicker">Service 11</div></div>
+    <div>
+      <h2>Personal Coaching</h2>
+      <p class="service-summary">One-on-one wellness coaching that weaves together yoga, mindfulness, healing therapies, nutrition awareness, and lifestyle guidance. The goal is steady transformation that feels realistic and sustainable.</p>
+      <ul class="service-points"><li>Personal roadmap based on goals, habits, and current challenges.</li><li>Integrates body, mind, emotional, and lifestyle practices.</li><li>Useful for long-term wellness and accountability.</li><li>Guidance from Dr. Meenakshi's body-mind-soul coaching approach.</li></ul>
+      <div class="service-actions"><a href="../index.html#contact" class="btn-primary">Enquire Now</a></div>
+    </div>
+  </article>
+</section>
+
+<section id="services-cta">
+  <div class="section-tag reveal">Not sure where to begin?</div>
+  <h2 class="section-title reveal">Start with a conversation</h2>
+  <p class="reveal">Share what you are looking for and Aarohana can suggest the class, healing session, or coaching path that fits your current needs.</p>
+  <div class="cta-buttons reveal">
+    <a href="../index.html#contact" class="btn-gold">Book a Class</a>
+    <a href="events.html" class="btn-outline">View Events</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">
+        <img src="../images/logo-footer.png" alt="Aarohana Yoga" class="footer-logo-img" />
+      </div>
+      <p class="footer-tagline">A sanctuary for body, mind, and soul — where ancient wisdom meets modern wellbeing.</p>
+      <p style="font-size:0.78rem;color:rgba(255,255,255,0.3);letter-spacing:0.06em;margin-bottom:1.2rem"><a href="https://maps.app.goo.gl/eXLF6SVuVMaBg3pB6" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none">📍 BEML Layout, Rajarajeshwari Nagar, Bengaluru</a></p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/aarohanayoga" target="_blank" class="footer-social-btn" title="Instagram" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="rgba(255,255,255,0.7)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a href="https://www.facebook.com/share/173X7oMKS6/" target="_blank" class="footer-social-btn" title="Facebook" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="rgba(255,255,255,0.7)" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="http://wa.me/919036915656" target="_blank" class="footer-social-btn" title="WhatsApp" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="rgba(255,255,255,0.7)" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigate</div>
+      <ul class="footer-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="../index.html#schedule">Schedule</a></li>
+        <li><a href="../index.html#testimonials">Testimonials</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="../index.html#contact">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="tel:+919036915656">+91 9036915656</a></li>
+        <li><a href="tel:+918035947279">+91 80 35947279</a></li>
+        <li><a href="mailto:aarohanayoga@gmail.com">aarohanayoga@gmail.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Aarohana Yoga. All rights reserved.</span>
+    <span>Founded by Dr. Meenakshi K S · RR Nagar, Bangalore</span>
+  </div>
+</footer>
+
+<div class="wa-wrapper">
+  <div class="wa-tooltip" id="waTooltip">
+    <span>Have a question? Contact us on WhatsApp now.</span>
+    <div class="wa-tooltip-arrow"></div>
+  </div>
+  <a href="http://wa.me/919036915656" class="wa-float" target="_blank" title="Chat on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</div>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
