@@ -6,7 +6,58 @@
   <title>Aarohana Yoga | Yoga Studio in RR Nagar, Bangalore</title>
   <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
-  <meta name="description" content="Aarohana Yoga — a sanctuary for body, mind & soul in Rajarajeshwari Nagar, Bangalore. Founded by Dr. Meenakshi K S. Yoga, Sound Healing, Fertility Yoga, Meditation & more."/>
+  <meta name="description" content="Aarohana Yoga is a holistic yoga and healing studio in Rajarajeshwari Nagar, Bengaluru offering yoga, meditation, sound healing, fertility yoga, Reiki, counseling, and wellness programs."/>
+  <meta name="keywords" content="Aarohana Yoga, yoga studio RR Nagar, yoga classes Rajarajeshwari Nagar, yoga Bangalore, sound healing Bangalore, fertility yoga, meditation classes, therapeutic yoga, Dr Meenakshi K S"/>
+  <meta name="author" content="Aarohana Yoga"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://www.aarohanayoga.com/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:locale" content="en_IN"/>
+  <meta property="og:site_name" content="Aarohana Yoga"/>
+  <meta property="og:title" content="Aarohana Yoga | Yoga Studio in RR Nagar, Bangalore"/>
+  <meta property="og:description" content="Aarohana Yoga is a holistic yoga and healing studio in Rajarajeshwari Nagar, Bengaluru offering yoga, meditation, sound healing, fertility yoga, Reiki, counseling, and wellness programs."/>
+  <meta property="og:url" content="https://www.aarohanayoga.com/"/>
+  <meta property="og:image" content="https://www.aarohanayoga.com/images/hero-lifestyle.png"/>
+  <meta property="og:image:secure_url" content="https://www.aarohanayoga.com/images/hero-lifestyle.png"/>
+  <meta property="og:image:width" content="1536"/>
+  <meta property="og:image:height" content="1024"/>
+  <meta property="og:image:alt" content="Aarohana Yoga | Yoga Studio in RR Nagar, Bangalore"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Aarohana Yoga | Yoga Studio in RR Nagar, Bangalore"/>
+  <meta name="twitter:description" content="Aarohana Yoga is a holistic yoga and healing studio in Rajarajeshwari Nagar, Bengaluru offering yoga, meditation, sound healing, fertility yoga, Reiki, counseling, and wellness programs."/>
+  <meta name="twitter:image" content="https://www.aarohanayoga.com/images/hero-lifestyle.png"/>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": [
+        "LocalBusiness",
+        "HealthAndBeautyBusiness"
+      ],
+      "name": "Aarohana Yoga",
+      "url": "https://www.aarohanayoga.com/",
+      "image": "https://www.aarohanayoga.com/images/hero-lifestyle.png",
+      "logo": "https://www.aarohanayoga.com/images/logo.png",
+      "telephone": "+91 9036915656",
+      "email": "aarohanayoga@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "135B, 2nd Floor, Opp HDFC Bank, Jawaharlal Nehru Road, BEML Layout, 4th Stage, Rajarajeshwari Nagar",
+        "addressLocality": "Bengaluru",
+        "addressRegion": "Karnataka",
+        "postalCode": "560098",
+        "addressCountry": "IN"
+      },
+      "areaServed": "Bengaluru",
+      "founder": {
+        "@type": "Person",
+        "name": "Dr. Meenakshi K S"
+      },
+      "sameAs": [
+        "https://www.instagram.com/dr.meenakshiks/",
+        "https://www.facebook.com/profile.php?id=61576039644438"
+      ]
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -227,10 +278,24 @@
 
     /* TESTIMONIALS */
     #testimonials { padding: var(--section-pad); background: var(--cream); }
-    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 2rem; margin-top: 3.5rem; }
+    .testimonials-grid {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scroll-snap-type: x proximity;
+      padding-bottom: 1rem;
+      -webkit-overflow-scrolling: touch;
+    }
+    .testimonials-grid::-webkit-scrollbar { height: 8px; }
+    .testimonials-grid::-webkit-scrollbar-track { background: rgba(49,91,83,0.08); }
+    .testimonials-grid::-webkit-scrollbar-thumb { background: rgba(49,91,83,0.35); border-radius: 999px; }
     .testimonial-card {
       background: white; padding: 2.5rem;
       box-shadow: 0 2px 20px rgba(0,0,0,0.04); transition: box-shadow 0.3s;
+      flex: 0 0 min(360px, 86vw);
+      scroll-snap-align: start;
     }
     .testimonial-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.08); }
     .quote-mark {
@@ -686,8 +751,20 @@
     <div class="testimonial-card">
       <span class="quote-mark">"</span>
       <div class="stars">★★★★★</div>
-      <p class="testimonial-text">Nothing quite compares to the transformative experience I found at Aarohana Yoga under Dr. Meenakshi Ma'am's guidance. Her knowledge, warmth, caring nature and grace are unmatched, and I have seen improvements in both physical health and mindfulness.</p>
+      <p class="testimonial-text">Nothing quite compares to the transformative experience I found at Aarohana Yoga under Dr. Meenakshi Ma'am's guidance. Her knowledge, warmth, caring nature and grace are unmatched. Her presence is calming, yet energising, and I eagerly anticipate each class.</p>
       <div class="testimonial-author"><div class="author-avatar">P</div><div><div class="author-name">Pooja</div><div class="author-tag">Yoga Student</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <span class="quote-mark">"</span>
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">Meenakshi is a highly qualified and knowledgeable yoga instructor with immense experience and a strong name in the industry. Highly recommended.</p>
+      <div class="testimonial-author"><div class="author-avatar">S</div><div><div class="author-name">Shyam Prasad</div><div class="author-tag">Yoga Student</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <span class="quote-mark">"</span>
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">Aarohana Yoga has built a strong reputation for excellence and customer satisfaction, with students appreciating the quality of yoga and wellness training in a serene setting.</p>
+      <div class="testimonial-author"><div class="author-avatar">A</div><div><div class="author-name">Aarohana Students</div><div class="author-tag">Review Summary</div></div></div>
     </div>
   </div>
 </section>
