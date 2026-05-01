@@ -1,190 +1,174 @@
-# Aarohana Yoga Website
+# Aarohana Yoga — Website
 
-Custom static website for Aarohana Yoga, a yoga and healing studio in RR Nagar, Bengaluru founded by Dr. Meenakshi K S.
+A clean, production-ready static website for **Aarohana Yoga**, founded by Dr. Meenakshi K S.  
+Built with pure HTML, CSS, and JavaScript. No frameworks, no dependencies, no build step.
 
-The site is built with plain HTML, CSS, and JavaScript. There is no framework, package manager, or build step.
+**Live:** [vyshakprasad.github.io/Aarohana-Yoga/](https://vyshakprasad.github.io/Aarohana-Yoga/)
 
-Live site: `https://vyshakprasad.github.io/Aarohana-Yoga/`
+---
 
-## Project Structure
+## 📁 Project Structure
 
-```text
+```
 aarohana-yoga/
-├── index.html
-├── events.json
+├── index.html                  ← Home page
+├── events.json                 ← Event data mirror (for reference — edit events.html directly)
 ├── css/
-│   └── main.css
+│   └── main.css                ← Shared styles + CSS brand tokens
 ├── js/
-│   └── main.js
+│   └── main.js                 ← Shared JS: nav, scroll reveal, WhatsApp tooltip
 ├── images/
-│   ├── logo.png
-│   ├── logo-footer.png
-│   ├── logo-icon.png
-│   ├── favicon.ico
-│   ├── apple-touch-icon.png
-│   ├── hero-lifestyle.png
-│   ├── meenakshi.jpeg
-│   ├── meenakshi-about.jpeg
-│   ├── shashi.jpeg
-│   ├── veeresh.jpg
-│   ├── events/
-│   │   ├── inner-child-healing.png
-│   │   ├── kids-summer-camp.png
-│   │   └── meditation-for-healing.png
+│   ├── logo.png                ← Main logo (transparent bg, used in nav)
+│   ├── logo-footer.png         ← Footer logo (dark bg composite — do NOT replace with logo.png)
+│   ├── logo-icon.png           ← Lotus icon only
+│   ├── favicon.ico             ← Browser tab favicon
+│   ├── apple-touch-icon.png    ← iOS home screen icon
+│   ├── hero-lifestyle.png      ← Lifestyle banner image
+│   ├── meenakshi.jpeg          ← Dr. Meenakshi at microphone (home hero)
+│   ├── meenakshi-about.jpeg    ← Dr. Meenakshi in studio (About page)
+│   ├── shashi.jpeg             ← Trainer Shashi headshot
+│   ├── veeresh.jpg             ← Trainer Veeresh headshot
+│   ├── event-inner-child-healing.png  ← Event poster: Inner Child Healing Workshop
+│   ├── event-meditation-healing.png   ← Event poster: Meditation for Healing (online)
+│   ├── event-kids-summer-camp.png     ← Event poster: Kids Summer Camp 2026
 │   └── gallery/
-│       └── gallery-01.jpeg through gallery-56.jpeg
-└── pages/
-    ├── about.html
-    ├── services.html
-    ├── gallery.html
-    └── events.html
+│       └── gallery-01.jpeg ... gallery-56.jpeg
+├── pages/
+│   ├── about.html              ← About / Founder page
+│   ├── gallery.html            ← Photo gallery with filters + lightbox
+│   └── events.html             ← Events page (EVENTS_DATA array inline)
+└── README.md
 ```
 
-## Brand
+---
 
-Studio: Aarohana Yoga  
-Tagline: Flow, Heal, Evolve  
-Founder: Dr. Meenakshi K S  
-Address: 135B, 2nd Floor, Opp HDFC Bank, Jawaharlal Nehru Rd, BEML Layout, 4th Stage, Rajarajeshwari Nagar, Bengaluru - 560098  
-Phone: +91 9036915656 / +91 80 35947279  
-Email: aarohanayoga@gmail.com  
-WhatsApp: `http://wa.me/919036915656`  
-Instagram: `https://www.instagram.com/aarohanayoga`  
-Facebook: `https://www.facebook.com/share/173X7oMKS6/`
+## 🎨 Brand Colours
 
-Primary colors are defined in `css/main.css`:
+Derived from the Aarohana Yoga logo:
 
-```css
---gold: #B8935A;
---gold-light: #D4AC72;
---gold-pale: #EDD9B4;
---teal: #2E6B5E;
---teal-mid: #4A8577;
---teal-light: #7AAF9F;
---cream: #F7F3EC;
---warm-white: #FDFAF5;
---charcoal: #2C2C2C;
---mid-grey: #6B6B6B;
---light-grey: #E8E3DC;
-```
+| Token | Value | Use |
+|---|---|---|
+| `--teal` | `#2E6B5E` | Primary brand (nav CTA, headings, buttons) |
+| `--teal-mid` | `#4A8577` | Hover states, avatar backgrounds |
+| `--teal-light` | `#7AAF9F` | Gradients |
+| `--gold` | `#B8935A` | Accent (section tags, underlines, badges) |
+| `--gold-light` | `#D4AC72` | Footer text, hover highlights |
+| `--gold-pale` | `#EDD9B4` | Hero text highlights |
+| `--cream` | `#F7F3EC` | Section backgrounds |
+| `--warm-white` | `#FDFAF5` | Page background |
+| `--charcoal` | `#2C2C2C` | Body text |
+| `--mid-grey` | `#6B6B6B` | Muted text |
+| `--light-grey` | `#E8E3DC` | Borders, dividers |
 
-Typography:
+Footer background: `#1C2820` (dark forest green)
 
-- Headings: Cormorant Garamond
-- Body, labels, buttons: Jost
+**Typography:** Cormorant Garamond (serif headings) + Jost (sans body/labels)
 
-## Current Pages
+---
 
-`index.html`
+## 🚀 Deploying
 
-- Home page with hero, founder intro, lifestyle banner, services, reasons to choose Aarohana, testimonials, sample schedule, contact details, Google Maps embed, and contact form.
-- Contact form is still frontend-only and needs a Formspree endpoint or another form backend.
-- Testimonials use public student reviews from Aarohana's Wix site and Justdial.
-- Schedule table is sample data and should be confirmed before relying on it publicly.
+This site is hosted on **GitHub Pages** at `vyshakprasad.github.io/Aarohana-Yoga/`.
 
-`pages/about.html`
+To update: push changes to the `main` branch of `github.com/vyshakprasad/Aarohana-Yoga` — GitHub Pages auto-deploys in ~60 seconds.
 
-- About/founder page with stats, Dr. Meenakshi's story, awards, credentials, philosophy, mission and vision, trainers, and CTA.
-- Trainer images are local assets.
+---
 
-`pages/services.html`
+## 📅 Managing Events
 
-- Expanded service detail page for all 11 offerings.
-- The top service menu links to each detailed section on the same page.
-- Homepage service cards link directly to the corresponding section on this page.
-- The main navigation Services item points to this page.
+Events are stored **inline** in `pages/events.html` as a JavaScript array (`EVENTS`), and mirrored in `events.json` for reference.
 
-`pages/gallery.html`
+> **Why inline?** `fetch()` is blocked by browsers when opening HTML files locally (`file:///`). Inline data works everywhere.
 
-- Gallery page with 56 local images.
-- Filters: All Photos, Yoga Poses, Group Classes, Studio Life.
-- Lightbox supports click, keyboard navigation, image counter, and ESC close.
-- Gallery categories are currently assigned by filename ranges and may need manual review.
+### To add a new event:
 
-`pages/events.html`
-
-- Events page with filter tabs for All, Upcoming, and Past.
-- Event cards are rendered from an inline JavaScript array so the page works when opened locally through `file:///`.
-- `events.json` mirrors the same event content for easier reference and future migration.
-- Poster-style event images are stored in `images/events/` and displayed with `object-fit: contain` so flyers are visible without cropping.
-
-## Editing Events
-
-Update event data in both places:
-
-1. `pages/events.html` inside the `EVENTS` array
-2. `events.json`
-
-The events page uses the inline data. The JSON file is a mirror for documentation, future fetch-based use, or external editing.
-
-Example event shape:
+1. Open `pages/events.html`
+2. Find the `var EVENTS = [` array near the bottom
+3. Add a new object at the **top** of the array (newest first):
 
 ```json
 {
-  "id": "unique-event-slug",
-  "title": "Event Title",
+  "id": "unique-slug",
+  "title": "Event Name",
   "status": "upcoming",
-  "date": "2026-05-04",
-  "date_label": "4 May - 22 May 2026",
-  "time": "10:30 AM - 12:30 PM",
-  "location": "Aarohana Yoga Studio, RR Nagar, Bengaluru",
-  "tagline": "Short event tagline.",
-  "description": "One clear paragraph describing the event.",
+  "date": "YYYY-MM-DD",
+  "time": "5:00 PM – 7:00 PM",
+  "location": "Full address or 'Online'",
+  "tagline": "Short italic subtitle",
+  "description": "Full description paragraph.",
   "category": "Workshop",
-  "image": "../images/events/example.png",
-  "price": "3499",
-  "seats": "",
-  "audience": "Who this event is for",
-  "enroll_by": "Enroll by 2 May 2026",
+  "image": "../images/your-poster.png",
+  "price": "500",
+  "seats": "20",
   "register_url": "http://wa.me/919036915656"
 }
 ```
 
-Notes:
+4. Also update `events.json` to keep it in sync
+5. If you have an event poster image, copy it to `images/` and set the `"image"` field
+6. Push both files to GitHub
 
-- `date` controls countdowns and upcoming/past filtering.
-- `date_label` is optional and should be used for multi-day events.
-- Use `../images/events/...` inside `pages/events.html`.
-- Use `images/events/...` inside `events.json`.
-- If `price` is blank, the card shows "Free / Enquire".
-- If `audience`, `enroll_by`, or `seats` are blank, those rows are hidden.
+**Status auto-detection:** The page automatically marks events as "Past" once their date has passed. The `status` field is for reference only.
 
-## Shared Components
+**Category badges supported:** `Workshop`, `Camp`, `Course`, `Retreat`, `Class`
 
-Navigation:
+---
 
-- Shared across all pages.
-- Desktop navigation includes About, Services, Schedule, Testimonials, Gallery, Events, and Book a Class.
-- Mobile navigation uses a hamburger dropdown.
-- Active page is highlighted.
+## 📄 Pages
 
-Footer:
+| File | Description |
+|---|---|
+| `index.html` | Home — Hero, About snippet, Lifestyle Banner, Services, Why Us, Testimonials, Schedule, Contact |
+| `pages/about.html` | About — Founder story, Stats, Philosophy, Mission/Vision, Trainers, CTA |
+| `pages/gallery.html` | Gallery — 56 images, 4-column masonry, filters (Poses/Classes/Studio), lightbox |
+| `pages/services.html` | Services — All 11 services with full descriptions, benefits, and anchor nav |
+| `pages/events.html` | Events — Cards with countdown timers, filter tabs, Notify Me WhatsApp banner |
 
-- Shared across all pages.
-- Uses `logo-footer.png`, which is pre-composited for the dark footer background.
-- Do not replace it with `logo.png`; the normal logo can look faint on the footer.
+### Current Events (as of April 2026)
 
-WhatsApp floating button:
+| Event | Date | Status |
+|---|---|---|
+| Kids Summer Camp | May 4–22, 2026 | Upcoming |
+| Meditation for Healing (Online, 21-day) | May 6–29, 2026 | Upcoming |
+| Inner Child Healing Workshop | Dec 6, 2025 | Past |
 
-- Present on all pages.
-- Tooltip appears on every page reload.
-- Opens WhatsApp to `+91 9036915656`.
+---
 
-## Deployment
+## ✉️ Wiring Up the Contact Form
 
-This is a static site. To deploy:
+The booking form on the home page is currently **frontend-only** (animation only, no email sent).
 
-1. Commit the changed files.
-2. Push to the GitHub repository.
-3. GitHub Pages should update automatically in about a minute.
+To make it functional:
+1. Sign up at [formspree.io](https://formspree.io) (free — 50 submissions/month)
+2. Create a new form → get an endpoint like `https://formspree.io/f/xxxx`
+3. In `index.html`, update the form's `action` attribute or the fetch POST URL in the submit handler
 
-No build command is needed.
+---
 
-## Known Pending Work
+## ⚠️ Known Issues / Pending Items
 
-- Wire the contact form to Formspree or another backend.
-- Confirm and update the class schedule.
-- Manually review gallery categories.
-- Add FAQ page.
-- Add Blog / Wellness Journal page.
-- Consider adding richer SEO metadata and Open Graph preview images for each page.
+1. **Contact form not wired up** — needs Formspree endpoint (see above)
+2. **Gallery categories are estimates** — images were categorised by filename range (01–09 poses, 10–35 classes, 36–56 studio). May need manual review
+3. **Schedule table is sample data** — real class timings need confirmation from Dr. Meenakshi
+4. **Testimonials** — only 1 real testimonial (Navya Koppa). 2 placeholders (Priya Sharma, Rahul Nair) should be replaced with real ones
+
+---
+
+## 📄 Pages Still To Build
+
+- Blog / Wellness Journal
+- Services expanded detail page
+- FAQ page
+
+---
+
+## 🔧 Design Notes
+
+- **Footer logo** uses `logo-footer.png` (dark-background composite). Do NOT substitute `logo.png` — it will appear faint
+- **Social icon SVGs** use explicit `fill="rgba(...)"` not `fill="currentColor"` — the latter breaks on GitHub Pages
+- **WhatsApp tooltip** shows on every page reload (not session-based) — this is intentional
+- **Event images** use `object-position: top center` so poster tops (titles) are always visible
+
+---
+
+*Built with ❤️ for Aarohana Yoga, Bengaluru.*

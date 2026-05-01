@@ -385,9 +385,16 @@ footer {
 .page-hero h1 em { font-style: italic; color: var(--gold-pale); }
 .page-hero-desc { font-size: 1rem; color: rgba(255,255,255,0.7); max-width: 560px; line-height: 1.8; font-weight: 300; }
 .hero-om {
-  position: absolute; right: 8%; top: 50%; transform: translateY(-50%);
-  font-size: 12rem; color: rgba(255,255,255,0.04);
+  position: absolute; right: 6%; top: 50%; transform: translateY(-50%);
+  font-size: 18rem; color: rgba(255,255,255,0.05);
   font-family: serif; z-index: 1; line-height: 1;
+  animation: heroOmSpin 90s linear infinite;
+  transform-origin: center center;
+  pointer-events: none; user-select: none;
+}
+@keyframes heroOmSpin {
+  from { transform: translateY(-50%) rotate(0deg); }
+  to   { transform: translateY(-50%) rotate(360deg); }
 }
 
 /* ── RESPONSIVE ── */
