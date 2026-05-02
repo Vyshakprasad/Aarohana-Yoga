@@ -242,15 +242,13 @@ footer {
   margin-bottom: 2rem;
 }
 .footer-brand {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  display: block;
+  margin-bottom: 0.8rem;
 }
 .footer-logo-img {
-  height: auto;
-  width: 220px;
   display: block;
+  width: 220px;
+  height: auto;
 }
 .footer-brand-text { display: flex; flex-direction: column; gap: 0.15rem; }
 .footer-brand-name {
@@ -362,39 +360,87 @@ footer {
 .reveal.visible { opacity: 1; transform: none; }
 
 /* ── PAGE HERO (inner pages) ── */
+/* ── PAGE HERO (shared — matches services page design) ── */
 .page-hero {
+  background: linear-gradient(130deg, #0f2b24 0%, var(--teal) 55%, #2a5c50 100%);
+  padding: 0 8%;
   padding-top: 72px;
-  background: linear-gradient(135deg, var(--teal) 0%, var(--color-primary-dk) 100%);
+  min-height: 420px;
   position: relative; overflow: hidden;
-  min-height: 300px;
-  display: flex; align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 4rem;
 }
-.page-hero::after {
+/* diagonal gold accent stripe */
+.page-hero::before {
   content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(circle at 80% 50%, rgba(184,147,90,0.18) 0%, transparent 60%);
+  position: absolute; top: 0; right: 0; bottom: 0;
+  width: 42%;
+  background: linear-gradient(160deg, rgba(184,147,90,0.12) 0%, rgba(184,147,90,0.04) 100%);
+  clip-path: polygon(12% 0%, 100% 0%, 100% 100%, 0% 100%);
+  pointer-events: none;
 }
-.page-hero-inner { position: relative; z-index: 2; padding: 4rem 8%; }
-.page-hero-tag {
-  font-size: 0.72rem; letter-spacing: 0.22em;
-  text-transform: uppercase; color: var(--gold-light);
-  display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;
-}
-.page-hero-tag::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold-light); }
-.page-hero h1 { font-size: clamp(2.8rem, 5vw, 4.5rem); color: white; line-height: 1.1; margin-bottom: 1rem; }
-.page-hero h1 em { font-style: italic; color: var(--gold-pale); }
-.page-hero-desc { font-size: 1rem; color: rgba(255,255,255,0.7); max-width: 560px; line-height: 1.8; font-weight: 300; }
-.hero-om {
-  position: absolute; right: 6%; top: 50%; transform: translateY(-50%);
-  font-size: 18rem; color: rgba(255,255,255,0.05);
-  font-family: serif; z-index: 1; line-height: 1;
-  animation: heroOmSpin 90s linear infinite;
-  transform-origin: center center;
-  pointer-events: none; user-select: none;
+/* large rotating OM watermark */
+.page-hero::after {
+  content: 'ॐ'; font-family: serif;
+  font-size: 28rem; color: rgba(255,255,255,0.05);
+  position: absolute; right: -2rem; top: 50%;
+  transform: translateY(-50%);
+  line-height: 1; pointer-events: none;
+  animation: heroOmSpin 120s linear infinite;
 }
 @keyframes heroOmSpin {
   from { transform: translateY(-50%) rotate(0deg); }
   to   { transform: translateY(-50%) rotate(360deg); }
+}
+.page-hero-left  { position: relative; z-index: 2; padding: 4rem 0; }
+.page-hero-right { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 1.2rem; }
+.page-hero-tag {
+  font-size: 0.72rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--gold-light);
+  display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.2rem;
+}
+.page-hero-tag::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold-light); }
+.page-hero h1 {
+  font-family: var(--font-serif); font-size: clamp(2.8rem, 4.5vw, 5rem);
+  color: white; line-height: 1.0; margin: 0 0 0.5rem; font-weight: 400;
+}
+.page-hero h1 em { font-style: italic; color: var(--gold-pale); display: block; }
+.page-hero-desc {
+  font-size: 1rem; color: rgba(255,255,255,0.75);
+  line-height: 1.85; font-weight: 300;
+  max-width: 420px;
+  border-left: 2px solid rgba(184,147,90,0.4);
+  padding-left: 1.5rem;
+}
+/* stat pills (used on about + services) */
+.hero-stat-row { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-top: 2rem; }
+.hero-stat-pill {
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+  padding: 0.6rem 1.2rem; display: flex; flex-direction: column;
+  gap: 0.15rem; backdrop-filter: blur(4px);
+}
+.hero-stat-pill strong {
+  font-family: var(--font-serif); font-size: 1.6rem; color: var(--gold-pale);
+  line-height: 1; font-weight: 400;
+}
+.hero-stat-pill span { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+/* tag pills (used on services right column) */
+.hero-tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+.hero-tag-pill {
+  font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.12);
+  padding: 0.3rem 0.75rem;
+}
+/* legacy .hero-om div — hidden now that ::after handles the OM */
+.hero-om { display: none; }
+/* responsive */
+@media (max-width: 900px) {
+  .page-hero { grid-template-columns: 1fr; padding: 72px 6% 3rem; min-height: auto; gap: 2rem; }
+  .page-hero::before { width: 100%; clip-path: none; }
+  .page-hero-left { padding: 2rem 0 0; }
+  .page-hero-right { padding-bottom: 2rem; }
 }
 
 /* ── RESPONSIVE ── */
