@@ -880,16 +880,40 @@
   <div class="contact-form reveal">
     <div class="form-title">Book a Trial Class</div>
     <div class="form-subtitle">Fill in the form and we'll reach out within 24 hours.</div>
-    <form id="contactForm" action="https://formspree.io/f/xykoyqay" method="POST" novalidate>
+
+    <!-- Formspree success / error banners -->
+    <div data-fs-success style="display:none;margin-bottom:1rem;padding:1rem 1.2rem;background:rgba(46,107,94,0.08);border-left:3px solid var(--teal);color:var(--teal);font-size:0.9rem;">
+      ✓ Thank you! We'll be in touch within 24 hours.
+    </div>
+    <div data-fs-error style="display:none;margin-bottom:1rem;padding:1rem 1.2rem;background:rgba(180,50,50,0.07);border-left:3px solid #c0392b;color:#c0392b;font-size:0.9rem;">
+      Something went wrong. Please try again or <a href="http://wa.me/919036915656?text=Hi%2C+I%27d+like+to+book+a+trial+class+at+Aarohana+Yoga.+Could+you+please+share+the+available+timings%3F" style="color:#c0392b;">reach us on WhatsApp</a>.
+    </div>
+
+    <form id="contactForm">
       <div class="form-row">
-        <div class="form-group"><label for="firstName">First Name *</label><input id="firstName" name="firstName" type="text" placeholder="Your first name" required/></div>
-        <div class="form-group"><label for="lastName">Last Name</label><input id="lastName" name="lastName" type="text" placeholder="Your last name"/></div>
+        <div class="form-group">
+          <label for="firstName">First Name *</label>
+          <input id="firstName" name="firstName" type="text" placeholder="Your first name" required data-fs-field/>
+          <span data-fs-error="firstName" style="font-size:0.8rem;color:#c0392b;"></span>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input id="lastName" name="lastName" type="text" placeholder="Your last name" data-fs-field/>
+        </div>
       </div>
-      <div class="form-group"><label for="phone">Phone / WhatsApp *</label><input id="phone" name="phone" type="tel" placeholder="+91 XXXXX XXXXX" required/></div>
-      <div class="form-group"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="your@email.com"/></div>
+      <div class="form-group">
+        <label for="phone">Phone / WhatsApp *</label>
+        <input id="phone" name="phone" type="tel" placeholder="+91 XXXXX XXXXX" required data-fs-field/>
+        <span data-fs-error="phone" style="font-size:0.8rem;color:#c0392b;"></span>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="your@email.com" data-fs-field/>
+        <span data-fs-error="email" style="font-size:0.8rem;color:#c0392b;"></span>
+      </div>
       <div class="form-group">
         <label for="service">I'm interested in</label>
-        <select id="service" name="service">
+        <select id="service" name="service" data-fs-field>
           <option value="">Select a service...</option>
           <option>Yoga for Wellness</option>
           <option>Fertility Yoga</option>
@@ -903,50 +927,21 @@
           <option>Other / Not sure yet</option>
         </select>
       </div>
-      <div class="form-group"><label for="message">Your Message</label><textarea id="message" name="message" placeholder="Tell us a bit about yourself or your goals (optional)..."></textarea></div>
-      <button type="submit" class="form-submit" id="formSubmitBtn">Send Message</button>
-      <div id="formSuccess" style="display:none;margin-top:1rem;padding:1rem 1.2rem;background:rgba(46,107,94,0.08);border-left:3px solid var(--teal);color:var(--teal);font-size:0.9rem;">
-        ✓ Thank you! We'll be in touch within 24 hours.
+      <div class="form-group">
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" placeholder="Tell us a bit about yourself or your goals (optional)..." data-fs-field></textarea>
       </div>
-      <div id="formError" style="display:none;margin-top:1rem;padding:1rem 1.2rem;background:rgba(180,50,50,0.07);border-left:3px solid #c0392b;color:#c0392b;font-size:0.9rem;">
-        Something went wrong. Please try again or <a href="http://wa.me/919036915656?text=Hi%2C+I%27d+like+to+book+a+trial+class+at+Aarohana+Yoga.+Could+you+please+share+the+available+timings%3F" style="color:#c0392b;">reach us on WhatsApp</a>.
-      </div>
+      <button type="submit" class="form-submit" data-fs-submit-btn>Send Message</button>
     </form>
   </div>
 </section>
+
+<!-- Formspree Ajax SDK -->
 <script>
-(function() {
-  var form = document.getElementById('contactForm');
-  var btn  = document.getElementById('formSubmitBtn');
-  var ok   = document.getElementById('formSuccess');
-  var err  = document.getElementById('formError');
-  if (!form) return;
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    ok.style.display = 'none';
-    err.style.display = 'none';
-    btn.textContent = 'Sending…';
-    btn.disabled = true;
-    fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    }).then(function(res) {
-      if (res.ok) {
-        ok.style.display = 'block';
-        form.reset();
-      } else {
-        err.style.display = 'block';
-      }
-    }).catch(function() {
-      err.style.display = 'block';
-    }).finally(function() {
-      btn.textContent = 'Send Message';
-      btn.disabled = false;
-    });
-  });
-})();
+  window.formspree = window.formspree || function() { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#contactForm', formId: 'xykoyqay' });
 </script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
 <footer>
   <div class="footer-grid">
