@@ -104,35 +104,35 @@ Every sub-page shares the same hero via `main.css`:
 
 ## 🚀 Deploying
 
-Hosted on **GitHub Pages** at `vyshakprasad.github.io/Aarohana-Yoga/`.
+Hosted on **Netlify**.
 
-To update: push changes to the `main` branch → GitHub Pages auto-deploys in ~60 seconds.
+To update: push changes to the connected Git branch → Netlify auto-deploys in ~30 seconds.
+
+> **Note:** The site was previously hosted on GitHub Pages. If still using GitHub Pages, the Netlify Forms integration will not work — use GitHub Pages with Formspree instead.
 
 ---
 
-## ✉️ Contact Form (Formspree)
+## ✉️ Contact Form (Netlify Forms)
 
-The booking form on the home page posts to **Formspree** at:
-```
-https://formspree.io/f/xykoyqay
-```
+The booking form uses **Netlify Forms** — no third-party service needed. Netlify detects the form automatically at deploy time via the `data-netlify="true"` attribute and the hidden `form-name` input.
 
-Submissions land in `aarohanayoga@gmail.com`.
+Submissions appear in your **Netlify dashboard** under: Site → Forms → `booking`
 
-### ⚠️ Important — local testing limitation
-**The form will NOT work when the site is opened directly from the file system** (`file:///Users/.../index.html`). Formspree blocks submissions from `file://` origins as a security measure.
+You can also set up email notifications in: Netlify dashboard → Forms → Form notifications → Add notification → Email.
 
-To test locally, run a local server instead:
+### How it works
+- The form POSTs to `/` with `application/x-www-form-urlencoded` content type
+- Netlify intercepts it server-side before it reaches any JS
+- Success/error feedback is shown inline without a page reload
+- Includes a honeypot field (`bot-field`) for spam protection
+
+### ⚠️ Local testing
+**Netlify Forms only works on the deployed Netlify site** — it will not work locally or on any other host. To test locally:
 ```bash
 cd aarohana-yoga
 python3 -m http.server 8000
-# Then open http://localhost:8000 in your browser
 ```
-
-The form works correctly on the live GitHub Pages site and on any `http://` or `https://` origin.
-
-### Activating the form
-Make sure the form has been activated on Formspree — they send a confirmation email to `aarohanayoga@gmail.com` that must be clicked before submissions are accepted. If the email wasn't confirmed, do that first.
+The form submission will silently fail locally (no Netlify to intercept it), but the UI feedback will still show. Test the real form on the deployed Netlify URL.
 
 ---
 
@@ -236,8 +236,7 @@ To add more: copy a `.testimonial-card` block inside `#testimonialsScroll` in `i
 
 ## ⚠️ Known Issues / Pending Items
 
-1. **Contact form only works on deployed site** — Formspree blocks `file://` origins. Use `python3 -m http.server 8000` to test locally, or push to GitHub Pages.
-2. **Formspree activation** — confirm the activation email sent to `aarohanayoga@gmail.com` has been clicked.
+1. **Contact form only works on deployed Netlify site** — Netlify Forms requires the Netlify infrastructure to intercept form POSTs. It will not work locally or on other hosts.
 3. **Gallery categories are estimates** — images categorised by filename range (01–09 poses, 10–35 classes, 36–56 studio, 57–70 classes/kids camp). May need manual review.
 4. **Schedule table is sample data** — confirm real class timings with Dr. Meenakshi.
 5. **2 placeholder testimonials** — Rekha Anand and Ananya Krishnan should be replaced with real reviews.
@@ -255,7 +254,7 @@ To add more: copy a `.testimonial-card` block inside `#testimonialsScroll` in `i
 
 - **Footer logo** is a transparent RGBA PNG. Do NOT use mix-blend-mode or non-transparent versions.
 - **Nav logo** (`logo.png`) has a transparent background — safe to use on any light background.
-- **Social icon SVGs** use explicit `fill="rgba(...)"` not `fill="currentColor"` — the latter breaks on GitHub Pages.
+- **Social icon SVGs** use explicit `fill="rgba(...)"` not `fill="currentColor"` — the latter can break on some hosting environments.
 - **WhatsApp tooltip** shows on every page reload (intentional, not session-based).
 - **Event images** use `height: clamp(380px, 44vw, 520px)` with `object-fit: contain` to show full poster at any screen size.
 - **Page hero OM** spins via `@keyframes heroOmSpin` in `main.css` at 120s/rotation using the `::after` pseudo-element. The legacy `.hero-om` div in each page's HTML is hidden (`display: none`) and kept only for backwards compatibility.

@@ -881,67 +881,51 @@
     <div class="form-title">Book a Trial Class</div>
     <div class="form-subtitle">Fill in the form and we'll reach out within 24 hours.</div>
 
-    <!-- Formspree success / error banners -->
-    <div data-fs-success style="display:none;margin-bottom:1rem;padding:1rem 1.2rem;background:rgba(46,107,94,0.08);border-left:3px solid var(--teal);color:var(--teal);font-size:0.9rem;">
-      ✓ Thank you! We'll be in touch within 24 hours.
-    </div>
-    <div data-fs-error style="display:none;margin-bottom:1rem;padding:1rem 1.2rem;background:rgba(180,50,50,0.07);border-left:3px solid #c0392b;color:#c0392b;font-size:0.9rem;">
-      Something went wrong. Please try again or <a href="http://wa.me/919036915656?text=Hi%2C+I%27d+like+to+book+a+trial+class+at+Aarohana+Yoga.+Could+you+please+share+the+available+timings%3F" style="color:#c0392b;">reach us on WhatsApp</a>.
-    </div>
-
-    <form id="contactForm">
+    <form name="booking" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/pages/thank-you.html">
+      <input type="hidden" name="form-name" value="booking" />
+      <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
       <div class="form-row">
         <div class="form-group">
           <label for="firstName">First Name *</label>
-          <input id="firstName" name="firstName" type="text" placeholder="Your first name" required data-fs-field/>
-          <span data-fs-error="firstName" style="font-size:0.8rem;color:#c0392b;"></span>
+          <input id="firstName" name="firstName" type="text" placeholder="Your first name" required />
         </div>
         <div class="form-group">
           <label for="lastName">Last Name</label>
-          <input id="lastName" name="lastName" type="text" placeholder="Your last name" data-fs-field/>
+          <input id="lastName" name="lastName" type="text" placeholder="Your last name" />
         </div>
       </div>
       <div class="form-group">
         <label for="phone">Phone / WhatsApp *</label>
-        <input id="phone" name="phone" type="tel" placeholder="+91 XXXXX XXXXX" required data-fs-field/>
-        <span data-fs-error="phone" style="font-size:0.8rem;color:#c0392b;"></span>
+        <input id="phone" name="phone" type="tel" placeholder="+91 XXXXX XXXXX" required />
       </div>
       <div class="form-group">
         <label for="email">Email</label>
-        <input id="email" name="email" type="email" placeholder="your@email.com" data-fs-field/>
-        <span data-fs-error="email" style="font-size:0.8rem;color:#c0392b;"></span>
+        <input id="email" name="email" type="email" placeholder="your@email.com" />
       </div>
       <div class="form-group">
         <label for="service">I'm interested in</label>
-        <select id="service" name="service" data-fs-field>
+        <select id="service" name="service">
           <option value="">Select a service...</option>
           <option>Yoga for Wellness</option>
           <option>Fertility Yoga</option>
           <option>Sound Healing Therapy</option>
           <option>Therapeutic Yoga</option>
-          <option>Meditation & Pranayama</option>
-          <option>Energy Healing & NLP</option>
+          <option>Meditation &amp; Pranayama</option>
+          <option>Energy Healing &amp; NLP</option>
           <option>Personal Coaching</option>
-          <option>Reiki & Pranic Healing</option>
+          <option>Reiki &amp; Pranic Healing</option>
           <option>Corporate / School Wellness</option>
           <option>Other / Not sure yet</option>
         </select>
       </div>
       <div class="form-group">
         <label for="message">Your Message</label>
-        <textarea id="message" name="message" placeholder="Tell us a bit about yourself or your goals (optional)..." data-fs-field></textarea>
+        <textarea id="message" name="message" placeholder="Tell us a bit about yourself or your goals (optional)..."></textarea>
       </div>
-      <button type="submit" class="form-submit" data-fs-submit-btn>Send Message</button>
+      <button type="submit" class="form-submit">Send Message</button>
     </form>
   </div>
 </section>
-
-<!-- Formspree Ajax SDK -->
-<script>
-  window.formspree = window.formspree || function() { (formspree.q = formspree.q || []).push(arguments); };
-  formspree('initForm', { formElement: '#contactForm', formId: 'xykoyqay' });
-</script>
-<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
 <footer>
   <div class="footer-grid">
@@ -981,7 +965,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 Aarohana Yoga. All rights reserved. · <a href="privacy.html" style="color:rgba(255,255,255,0.4);text-decoration:none;">Privacy Policy</a></span>
+    <span>© 2025 Aarohana Yoga. All rights reserved. · <a href="pages/privacy.html" style="color:rgba(255,255,255,0.4);text-decoration:none;">Privacy Policy</a></span>
     <span>Founded by Dr. Meenakshi K S · RR Nagar, Bangalore</span>
   </div>
 </footer>
