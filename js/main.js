@@ -48,20 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ── Contact form submit (index.html)
-  const formSubmit = document.querySelector('.form-submit');
-  if (formSubmit) {
-    formSubmit.addEventListener('click', (e) => {
-      e.preventDefault();
-      formSubmit.textContent = 'Message Sent ✓';
-      formSubmit.style.background = 'var(--teal-mid)';
-      setTimeout(() => {
-        formSubmit.textContent = 'Send Message';
-        formSubmit.style.background = '';
-      }, 3000);
-    });
-  }
-
   // ── WhatsApp tooltip — show for 5s on every page load
   const waTooltip = document.getElementById('waTooltip');
   if (waTooltip) {

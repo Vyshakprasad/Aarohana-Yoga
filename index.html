@@ -881,26 +881,37 @@
     <div class="form-title">Book a Trial Class</div>
     <div class="form-subtitle">Fill in the form and we'll reach out within 24 hours.</div>
 
-    <form name="booking" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/pages/thank-you.html">
-      <input type="hidden" name="form-name" value="booking" />
-      <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
+    <div id="formSuccess" style="display:none;margin-bottom:1rem;padding:1rem 1.2rem;background:rgba(46,107,94,0.08);border-left:3px solid var(--teal);color:var(--teal);font-size:0.9rem;">
+      ✓ Thank you! We'll be in touch within 24 hours.
+    </div>
+    <div id="formError" style="display:none;margin-bottom:1rem;padding:1rem 1.2rem;background:rgba(180,50,50,0.07);border-left:3px solid #c0392b;color:#c0392b;font-size:0.9rem;">
+      Something went wrong. Please try again or <a href="http://wa.me/919036915656?text=Hi%2C+I%27d+like+to+book+a+trial+class+at+Aarohana+Yoga.+Could+you+please+share+the+available+timings%3F" style="color:#c0392b;">reach us on WhatsApp</a>.
+    </div>
+
+    <form id="contactForm">
+      <!-- Web3Forms -->
+      <input type="hidden" name="access_key" value="7497b64c-0075-4648-a8a1-28867ed9ca53"/>
+      <input type="hidden" name="subject" value="New Booking Enquiry — Aarohana Yoga"/>
+      <input type="hidden" name="from_name" value="Aarohana Yoga Website"/>
+      <input type="checkbox" name="botcheck" style="display:none;"/>
+
       <div class="form-row">
         <div class="form-group">
           <label for="firstName">First Name *</label>
-          <input id="firstName" name="firstName" type="text" placeholder="Your first name" required />
+          <input id="firstName" name="firstName" type="text" placeholder="Your first name" required/>
         </div>
         <div class="form-group">
           <label for="lastName">Last Name</label>
-          <input id="lastName" name="lastName" type="text" placeholder="Your last name" />
+          <input id="lastName" name="lastName" type="text" placeholder="Your last name"/>
         </div>
       </div>
       <div class="form-group">
         <label for="phone">Phone / WhatsApp *</label>
-        <input id="phone" name="phone" type="tel" placeholder="+91 XXXXX XXXXX" required />
+        <input id="phone" name="phone" type="tel" placeholder="+91 XXXXX XXXXX" required/>
       </div>
       <div class="form-group">
         <label for="email">Email</label>
-        <input id="email" name="email" type="email" placeholder="your@email.com" />
+        <input id="email" name="email" type="email" placeholder="your@email.com"/>
       </div>
       <div class="form-group">
         <label for="service">I'm interested in</label>
@@ -922,10 +933,67 @@
         <label for="message">Your Message</label>
         <textarea id="message" name="message" placeholder="Tell us a bit about yourself or your goals (optional)..."></textarea>
       </div>
-      <button type="submit" class="form-submit">Send Message</button>
+      <button type="submit" class="form-submit" id="formSubmitBtn">Send Message</button>
     </form>
   </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var form = document.getElementById('contactForm');
+  if (!form) { console.error('contactForm not found'); return; }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    var btn  = document.getElementById('formSubmitBtn');
+    var ok   = document.getElementById('formSuccess');
+    var err  = document.getElementById('formError');
+
+    var firstName = document.getElementById('firstName').value.trim();
+    var phone     = document.getElementById('phone').value.trim();
+    if (!firstName || !phone) {
+      err.textContent  = 'Please fill in your first name and phone number.';
+      err.style.display = 'block';
+      return;
+    }
+
+    ok.style.display  = 'none';
+    err.style.display = 'none';
+    btn.textContent   = 'Sending…';
+    btn.disabled      = true;
+
+    var data = new FormData(form);
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: data
+    })
+    .then(function(res) {
+      return res.json();
+    })
+    .then(function(json) {
+      console.log('Web3Forms response:', json);
+      if (json.success) {
+        ok.style.display = 'block';
+        form.reset();
+        btn.textContent = 'Send Message';
+        btn.disabled    = false;
+      } else {
+        throw new Error(json.message || 'Submission failed');
+      }
+    })
+    .catch(function(error) {
+      console.error('Form error:', error);
+      err.textContent   = 'Something went wrong. Please try again or reach us on WhatsApp.';
+      err.style.display = 'block';
+      btn.textContent   = 'Send Message';
+      btn.disabled      = false;
+    });
+  });
+});
+</script>
 
 <footer>
   <div class="footer-grid">
